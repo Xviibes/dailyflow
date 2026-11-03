@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.netlify.dailyflowchatai.twa",
+      "sha256_cert_fingerprints": [
+        "08:F0:D7:C9:F0:6B:EF:A1:C7:E5:9F:47:C5:8A:02:DE:58:25:E0:D6:A6:E5:D8:A9:07:FE:68:FD:03:9F:5D:D7"
+      ]
+    }
+  }
+]

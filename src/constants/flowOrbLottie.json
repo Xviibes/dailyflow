@@ -1,0 +1,82 @@
+{
+  "v": "5.9.0",
+  "fr": 60,
+  "ip": 0,
+  "op": 180,
+  "w": 200,
+  "h": 200,
+  "nm": "Flowy Liquid Core Orb",
+  "ddd": 0,
+  "assets": [],
+  "meta": {
+    "theme": "The Flow Orb / Liquid Core",
+    "colors": {
+      "primaryPurple": "#8b5cf6",
+      "deepIndigo": "#4f46e5",
+      "neonCyan": "#06b6d4",
+      "brightAqua": "#22d3ee",
+      "softPink": "#ec4899"
+    },
+    "particles": [
+      { "id": "p1", "angle": 25, "dist": 78, "size": 5.5, "speed": 1.2, "color": "#22d3ee" },
+      { "id": "p2", "angle": 115, "dist": 82, "size": 4.2, "speed": 0.9, "color": "#a855f7" },
+      { "id": "p3", "angle": 210, "dist": 76, "size": 6.0, "speed": 1.4, "color": "#38bdf8" },
+      { "id": "p4", "angle": 305, "dist": 84, "size": 4.8, "speed": 1.1, "color": "#f472b6" },
+      { "id": "p5", "angle": 165, "dist": 88, "size": 3.6, "speed": 1.6, "color": "#67e8f9" }
+    ]
+  },
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 4,
+      "nm": "Liquid Core Outer Wave",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 85 },
+        "r": {
+          "a": 1,
+          "k": [
+            { "t": 0, "s": [0] },
+            { "t": 180, "s": [360] }
+          ]
+        },
+        "p": { "a": 0, "k": [100, 100, 0] },
+        "s": {
+          "a": 1,
+          "k": [
+            { "t": 0, "s": [100, 94, 100] },
+            { "t": 90, "s": [94, 104, 100] },
+            { "t": 180, "s": [100, 94, 100] }
+          ]
+        }
+      }
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 4,
+      "nm": "Liquid Core Inner Counter-Wave",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 95 },
+        "r": {
+          "a": 1,
+          "k": [
+            { "t": 0, "s": [360] },
+            { "t": 180, "s": [0] }
+          ]
+        },
+        "p": { "a": 0, "k": [100, 100, 0] },
+        "s": {
+          "a": 1,
+          "k": [
+            { "t": 0, "s": [96, 102, 100] },
+            { "t": 90, "s": [103, 95, 100] },
+            { "t": 180, "s": [96, 102, 100] }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>DailyFlow - All-in-One Life &amp; To-Do Planner</title>
+    <meta name="application-name" content="DailyFlow" />
+    <meta name="description" content="Aplikasi To-Do List, Life Planning, Workout Split, Rutinitas, Catatan &amp; Finansial dengan Asisten AI Flowy." />
+
+    <!-- PWA Web App Manifest & Icons -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="DailyFlow" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+      #df-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: radial-gradient(circle at 50% 40%, #161b33 0%, #070b13 75%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #df-splash.df-splash-hide {
+        opacity: 0;
+        transform: scale(1.04);
+        pointer-events: none;
+      }
+      .df-splash-icon-wrap {
+        width: 96px;
+        height: 96px;
+        border-radius: 28px;
+        padding: 3px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05));
+        box-shadow: 0 20px 50px rgba(79, 70, 229, 0.45), 0 0 35px rgba(219, 39, 119, 0.25);
+        animation: dfPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      .df-splash-icon-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 52%, #db2777 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .df-check-path {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: dfDrawCheck 0.5s 0.15s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      }
+      @keyframes dfPopIn {
+        0% { opacity: 0; transform: scale(0.78) translateY(10px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      @keyframes dfDrawCheck {
+        to { stroke-dashoffset: 0; }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-900 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white overscroll-none">
+    <!-- Smooth Rounded Squircle Splash Screen saat pertama kali buka di HP -->
+    <div id="df-splash" aria-hidden="true">
+      <div class="df-splash-icon-wrap">
+        <div class="df-splash-icon-inner">
+          <svg viewBox="0 0 64 64" width="56" height="56" fill="none">
+            <path
+              class="df-check-path"
+              d="M18 33.5L27.5 43L46.5 22"
+              stroke="#ffffff"
+              stroke-width="6.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path d="M47 13L48.6 16.8L52.5 18.4L48.6 20L47 23.8L45.4 20L41.5 18.4L45.4 16.8Z" fill="#fde047" />
+            <path d="M18 44L19 46.4L21.5 47.4L19 48.4L18 50.8L17 48.4L14.5 47.4L17 46.4Z" fill="#7dd3fc" />
+          </svg>
+        </div>
+      </div>
+      <div style="margin-top: 16px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #ffffff;">
+        DailyFlow
+      </div>
+      <div style="margin-top: 4px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: #94a3b8;">
+        Life Planner &amp; Productivity Hub
+      </div>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('/sw.js', { scope: '/' })
+            .catch(function (err) {
+              console.warn('SW registration error:', err);
+            });
+        });
+      }
+
+      window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          var splash = document.getElementById('df-splash');
+          if (splash) {
+            splash.classList.add('df-splash-hide');
+            setTimeout(function () {
+              if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+            }, 480);
+          }
+        }, 520);
+      });
+    </script>
+  </body>
+</html>

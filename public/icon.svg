@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04" />
+    </linearGradient>
+    <filter id="checkShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f0a28" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Sudut Squircle Melengkung Halus (Tanpa Kotak Persegi di Luar) -->
+  <rect x="16" y="16" width="480" height="480" rx="118" fill="url(#bgGrad)" />
+  <rect x="38" y="38" width="436" height="436" rx="102" fill="url(#glowGrad)" stroke="rgba(255,255,255,0.28)" stroke-width="4.5" />
+
+  <!-- Sparkle & Checkmark Estetik Halus -->
+  <g filter="url(#checkShadow)">
+    <path d="M162 266 L226 330 L354 186" fill="none" stroke="#ffffff" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <path d="M358 118 L368 142 L392 152 L368 162 L358 186 L348 162 L324 152 L348 142 Z" fill="#fde047" />
+  <path d="M158 336 L165 351 L180 358 L165 365 L158 380 L151 365 L136 358 L151 351 Z" fill="#7dd3fc" />
+</svg>
