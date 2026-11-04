@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lock, Copy, Check, KeyRound, Sparkles } from 'lucide-react';
 import { computeActivationPin } from './SettingsModal';
 
@@ -23,6 +23,12 @@ export function LicenseLockScreen({ onUnlocked }) {
   const [pinInput, setPinInput] = useState('');
   const [copied, setCopied] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    if (!EMERGENCY_BYPASS_PIN || !String(EMERGENCY_BYPASS_PIN).trim()) {
+      if (typeof onUnlocked === 'function') onUnlocked();
+    }
+  }, [onUnlocked]);
 
   const formattedId = `DF-${deviceId}`;
 

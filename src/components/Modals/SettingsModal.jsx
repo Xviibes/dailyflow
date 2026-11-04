@@ -11,6 +11,7 @@ export function computeActivationPin(rawDeviceId) {
   if (!cleanDigits) return '';
   const mult = Number(import.meta.env.VITE_LICENSE_MULT);
   const add = Number(import.meta.env.VITE_LICENSE_ADD);
+  if (Number.isNaN(mult) || Number.isNaN(add) || !mult || !add) return '';
   return String(Number(cleanDigits) * mult + add)
     .split('')
     .reverse()

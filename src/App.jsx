@@ -51,8 +51,14 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [desktopSidebarOpen, setDesktopSidebarOpen] = useLocalStorage('df_desktop_sidebar_open', true);
 
-  // Modals & License State
+  // Modals & License State (Auto-bypass jika VITE_ADMIN_PIN kosong untuk mode portofolio)
+  const isLicenseEnforced = Boolean(
+    import.meta.env.VITE_ADMIN_PIN && String(import.meta.env.VITE_ADMIN_PIN).trim()
+  );
   const [isLicenseVerified, setIsLicenseVerified] = useState(() => {
+    if (!import.meta.env.VITE_ADMIN_PIN || !String(import.meta.env.VITE_ADMIN_PIN).trim()) {
+      return true;
+    }
     try {
       return localStorage.getItem('df_license_verified') === 'true';
     } catch {
@@ -263,7 +269,7 @@ export default function App() {
     [jakartaTime.dayName, uncompletedTodoCount, wellness?.water?.current]
   );
 
-  if (!isLicenseVerified) {
+  if (isLicenseEnforced && !isLicenseVerified) {
     return <LicenseLockScreen onUnlocked={() => setIsLicenseVerified(true)} />;
   }
 
