@@ -28,7 +28,7 @@ export function ModalPortal({ isOpen = true, onClose, children, maxWidth = 'max-
       }}
     >
       <div
-        className={`glass-panel w-full ${maxWidth} m-auto p-5 sm:p-6 rounded-3xl border border-white/20 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto`}
+        className={`glass-panel bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/95 w-full ${maxWidth} m-auto p-5 sm:p-6 rounded-3xl border border-white/20 shadow-inner shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto`}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

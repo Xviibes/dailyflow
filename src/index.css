@@ -34,36 +34,109 @@
   background: rgba(148, 163, 184, 0.5);
 }
 
-/* Optimized Glassmorphism utility classes (Solid/Semi-transparent without heavy backdrop-filter for Android WebView) */
+/* Fake Glassmorphism mewah tanpa backdrop-filter: blur (Ringan 60 FPS di Android WebView) */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.35);
+  background-image: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(15, 23, 42, 0.95) 55%,
+    rgba(30, 27, 75, 0.92) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    0 10px 28px -4px rgba(2, 6, 23, 0.65);
 }
 
 .glass-card {
-  background: rgba(30, 41, 59, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.22);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  background-image: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(15, 23, 42, 0.95) 50%,
+    rgba(30, 27, 75, 0.90) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 6px 20px -2px rgba(2, 6, 23, 0.45);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(129, 140, 248, 0.45);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    0 10px 25px -4px rgba(79, 70, 229, 0.28);
   transform: translateY(-2px);
 }
 
 .glass-input {
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(23, 37, 84, 0.88) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.35);
   color: #f8fafc;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .glass-input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  border-color: #818cf8;
+  box-shadow:
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.35),
+    0 0 0 2px rgba(99, 102, 241, 0.3);
   outline: none;
+}
+
+/* Animasi Ikon AI Flowy 100% GPU-Accelerated (Hanya transform & opacity) */
+@keyframes flowy-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0) scale(1.03);
+  }
+}
+
+@keyframes flowy-pulse-glow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.16);
+    opacity: 0.9;
+  }
+}
+
+@keyframes flowy-ring-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.04);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.flowy-gpu-float {
+  will-change: transform;
+  animation: flowy-float 3.2s ease-in-out infinite;
+}
+
+.flowy-gpu-glow {
+  will-change: transform, opacity;
+  animation: flowy-pulse-glow 2.4s ease-in-out infinite;
+}
+
+.flowy-gpu-ring {
+  transform-origin: 100px 100px;
+  will-change: transform;
+  animation: flowy-ring-spin 10s linear infinite;
 }
 
 /* Styled dropdown (select) — tampilan konsisten & menarik, tanpa panah bawaan browser */

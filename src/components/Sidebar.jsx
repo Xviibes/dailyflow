@@ -101,29 +101,29 @@ export function Sidebar({
 
       {/* Sidebar Container */}
       <aside className={`
-        fixed top-0 bottom-0 left-0 z-50 w-72 bg-slate-950/95 border-r border-white/10
+        fixed top-0 bottom-0 left-0 z-50 w-72 bg-gradient-to-b from-slate-900/95 via-slate-950/95 to-indigo-950/95 border-r border-white/15 shadow-inner shadow-2xl
         flex flex-col transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         ${isDesktopOpen ? 'lg:translate-x-0' : 'lg:-translate-x-full'}
       `}>
         {/* Sidebar Brand Header */}
-        <div className="p-5 flex items-center justify-between border-b border-white/10">
+        <div className="p-5 flex items-center justify-between border-b border-white/15">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-indigo-500/30">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-0.5 shadow-lg shadow-indigo-500/30">
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-indigo-400 animate-pulse" />
+                <Sparkles className="w-5 h-5 text-indigo-300 animate-pulse" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <h2 className="text-lg font-black tracking-tight text-white font-display">
-                  Daily<span className="text-indigo-400">Flow</span>
+                  Daily<span className="bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">Flow</span>
                 </h2>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 uppercase">
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-gradient-to-r from-indigo-500/30 to-purple-500/30 border border-indigo-400/30 text-indigo-200 uppercase">
                   Pro
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">Life Planner & Productivity</p>
+              <p className="text-[11px] text-slate-300">Life Planner & Productivity</p>
             </div>
           </div>
 

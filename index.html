@@ -106,13 +106,24 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker
-            .register('/sw.js', { scope: '/' })
-            .catch(function (err) {
-              console.warn('SW registration error:', err);
-            });
-        });
+        navigator.serviceWorker
+          .getRegistrations()
+          .then(function (registrations) {
+            for (var i = 0; i < registrations.length; i++) {
+              registrations[i].unregister();
+            }
+          })
+          .catch(function () {});
+      }
+      if ('caches' in window) {
+        caches
+          .keys()
+          .then(function (names) {
+            for (var i = 0; i < names.length; i++) {
+              caches.delete(names[i]);
+            }
+          })
+          .catch(function () {});
       }
 
       window.addEventListener('DOMContentLoaded', function () {

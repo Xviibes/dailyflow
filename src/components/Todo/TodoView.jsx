@@ -148,37 +148,37 @@ export function TodoView({ todos, setTodos, soundEnabled = true }) {
   const getPriorityBadge = (priority) => {
     switch (priority) {
       case 'Tinggi':
-        return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+        return 'bg-gradient-to-r from-rose-500/25 to-pink-500/20 text-rose-300 border-rose-400/40';
       case 'Sedang':
-        return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        return 'bg-gradient-to-r from-amber-500/25 to-orange-500/20 text-amber-300 border-amber-400/40';
       case 'Rendah':
-        return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+        return 'bg-gradient-to-r from-emerald-500/25 to-teal-500/20 text-emerald-300 border-emerald-400/40';
       default:
-        return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
+        return 'bg-slate-500/20 text-slate-300 border-slate-500/30';
     }
   };
 
   return (
     <div className="space-y-6">
       {/* Top Banner / Stats Card */}
-      <div className="glass-panel p-6 rounded-3xl relative overflow-hidden">
-        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="glass-panel bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner p-6 rounded-3xl relative overflow-hidden">
+        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-500/15 rounded-full pointer-events-none" />
         
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/25 via-purple-500/25 to-cyan-500/20 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-inner mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
               <span>To-Do List Harian Produktif</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
               Daftar Tugas Hari Ini
             </h2>
-            <p className="text-sm text-slate-400 mt-1">
+            <p className="text-sm text-slate-300 mt-1">
               Catat, atur prioritas, dan raih kepuasan menyelesaikan setiap target harianmu.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-white/10 shrink-0">
+          <div className="flex items-center gap-4 bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 p-4 rounded-2xl border border-white/15 shadow-inner shrink-0">
             <div className="relative w-14 h-14 flex items-center justify-center">
               <svg className="w-14 h-14 transform -rotate-90">
                 <circle cx="28" cy="28" r="22" stroke="currentColor" strokeWidth="4" className="text-slate-700" fill="transparent" />
@@ -192,14 +192,14 @@ export function TodoView({ todos, setTodos, soundEnabled = true }) {
               <span className="absolute text-xs font-bold text-white">{progressPercent}%</span>
             </div>
             <div>
-              <div className="text-xs text-slate-400">Pencapaian Hari Ini</div>
+              <div className="text-xs text-slate-300 font-medium">Pencapaian Hari Ini</div>
               <div className="text-lg font-bold text-white">
-                {completedCount} <span className="text-sm font-normal text-slate-400">dari {totalCount} Selesai</span>
+                {completedCount} <span className="text-sm font-normal text-slate-300">dari {totalCount} Selesai</span>
               </div>
             </div>
             <button
               onClick={handleOpenAddModal}
-              className="ml-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-indigo-500/25 active:scale-95 transition-all"
+              className="ml-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 hover:opacity-95 text-white font-bold text-sm flex items-center gap-2 shadow-lg shadow-indigo-500/25 active:scale-95 transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>Tambah Tugas</span>
@@ -208,9 +208,9 @@ export function TodoView({ todos, setTodos, soundEnabled = true }) {
         </div>
 
         {/* Progress bar line */}
-        <div className="w-full h-2 bg-slate-800/80 rounded-full mt-6 overflow-hidden">
+        <div className="w-full h-2.5 bg-slate-950/80 border border-white/10 rounded-full mt-6 overflow-hidden">
           <div 
-            className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>

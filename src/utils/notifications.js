@@ -67,26 +67,26 @@ export async function ensureNotificationChannel() {
   }
 }
 
-// Register Service Worker for PWA & Web Notifications, and initialize Native channel
+// Initialize Native channel and unregister any stale Service Worker so Android WebView updates immediately
 export async function registerServiceWorker() {
+  if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    try {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const reg of registrations) {
+        await reg.unregister();
+      }
+      swRegistration = null;
+    } catch {
+      // Ignore SW unregister errors
+    }
+  }
+
   if (isNativeApp()) {
     await ensureNotificationChannel();
     await checkNotificationPermission();
-    return null;
   }
 
-  if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
-    return null;
-  }
-
-  try {
-    const reg = await navigator.serviceWorker.register('/sw.js');
-    swRegistration = reg;
-    return reg;
-  } catch (error) {
-    console.warn('Service Worker registration failed:', error);
-    return null;
-  }
+  return null;
 }
 
 // Get current permission status synchronously (with cached state for Native)

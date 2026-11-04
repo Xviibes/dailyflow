@@ -399,7 +399,7 @@ export const AiAssistantCard = memo(function AiAssistantCard({
 
   return (
     <div
-      className={`glass-panel rounded-3xl border ${cfg.borderGlow} p-4 sm:p-5 relative overflow-hidden transition-all`}
+      className={`glass-panel bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 rounded-3xl border border-white/15 shadow-inner p-4 sm:p-5 relative overflow-hidden transition-all`}
     >
       {/* Baris Header Flowy AI Assistant */}
       <div className="flex flex-wrap items-center justify-between gap-2.5">

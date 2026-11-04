@@ -9,6 +9,7 @@ export const FlowOrbAvatar = memo(function FlowOrbAvatar({
   size = 'md', // 'sm' (44px), 'md' (54px), 'lg' (68px), 'xl' (86px)
   isOnline = true,
   isLoading = false,
+  isDragging = false,
   onClick,
   className = '',
 }) {
@@ -36,17 +37,17 @@ export const FlowOrbAvatar = memo(function FlowOrbAvatar({
       onClick={onClick}
       style={{ width: `${sizePx}px`, height: `${sizePx}px` }}
       className={`relative select-none shrink-0 flex items-center justify-center group ${
-        onClick ? 'cursor-pointer' : ''
-      } ${className}`}
+        !isDragging ? 'flowy-gpu-float' : ''
+      } ${onClick ? 'cursor-pointer' : ''} ${className}`}
       title="Flowy • Sahabat Produktivitasmu"
     >
-      {/* Aura Neon Luar (Ungu - Cyan) */}
+      {/* Aura Neon Luar GPU-Accelerated (Ungu - Cyan Pulse Glow) */}
       <div
-        className={`absolute inset-0 rounded-full pointer-events-none ${
+        className={`absolute -inset-1 rounded-full pointer-events-none ${
           isOnline
             ? isLoading
-              ? 'bg-gradient-to-tr from-purple-500/40 via-cyan-400/40 to-fuchsia-500/40 animate-pulse'
-              : 'bg-gradient-to-tr from-indigo-500/30 via-purple-500/30 to-cyan-400/30'
+              ? 'bg-gradient-to-tr from-purple-500/55 via-cyan-400/55 to-fuchsia-500/55 flowy-gpu-glow'
+              : 'bg-gradient-to-tr from-indigo-500/45 via-purple-500/45 to-cyan-400/45 flowy-gpu-glow'
             : 'bg-slate-700/25'
         }`}
       />
@@ -112,7 +113,7 @@ export const FlowOrbAvatar = memo(function FlowOrbAvatar({
           fill={`url(#orbCore-${uid})`}
         />
 
-        {/* Cincin Energi Cyan-Ungu */}
+        {/* Cincin Energi Cyan-Ungu GPU-Accelerated */}
         <circle
           cx="100"
           cy="100"
@@ -120,8 +121,9 @@ export const FlowOrbAvatar = memo(function FlowOrbAvatar({
           fill="none"
           stroke={isOnline ? '#67e8f9' : '#64748b'}
           strokeWidth="2.2"
-          strokeOpacity="0.45"
+          strokeOpacity="0.55"
           strokeDasharray="28 14"
+          className={isOnline ? 'flowy-gpu-ring' : ''}
         />
 
         {/* Layar Inti OLED Wajah Digital */}

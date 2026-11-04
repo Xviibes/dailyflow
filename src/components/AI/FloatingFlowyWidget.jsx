@@ -454,7 +454,7 @@ export const FloatingFlowyWidget = memo(function FloatingFlowyWidget({
         </button>
       ) : (
         <>
-          {/* JENDELA CHAT MENGAMBANG FLOWY (Tanpa backdrop-blur berat) */}
+          {/* JENDELA CHAT MENGAMBANG FLOWY (Fake Glassmorphism mewah tanpa backdrop-blur) */}
           {isOpen && (
             <div
               style={{
@@ -462,13 +462,13 @@ export const FloatingFlowyWidget = memo(function FloatingFlowyWidget({
                 top: `${Math.max(12, windowTop)}px`,
                 width: `${windowWidth}px`,
               }}
-              className="fixed z-[88] rounded-3xl bg-slate-950/95 border border-purple-500/40 shadow-2xl overflow-hidden flex flex-col animate-fade-in"
+              className="fixed z-[88] rounded-3xl bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/95 border border-white/15 shadow-inner shadow-2xl overflow-hidden flex flex-col animate-fade-in"
             >
               {/* Header Jendela Mengambang */}
               <div
                 onPointerDown={handlePointerDown}
                 style={{ touchAction: 'none' }}
-                className="px-4 py-3 bg-gradient-to-r from-indigo-950/95 via-purple-950/95 to-slate-900/95 border-b border-white/10 flex items-center justify-between gap-2 cursor-grab active:cursor-grabbing select-none"
+                className="px-4 py-3 bg-gradient-to-r from-indigo-950/95 via-purple-950/95 to-slate-900/95 border-b border-white/15 shadow-inner flex items-center justify-between gap-2 cursor-grab active:cursor-grabbing select-none"
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <FlowOrbAvatar
@@ -694,7 +694,7 @@ export const FloatingFlowyWidget = memo(function FloatingFlowyWidget({
             className="fixed z-[89] select-none group"
           >
             {isLoading && !isOpen ? (
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-44 px-3 py-2 rounded-2xl bg-slate-900/95 border border-cyan-400/50 text-[11px] text-cyan-200 shadow-xl pointer-events-none animate-pulse">
+              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-44 px-3 py-2 rounded-2xl bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/95 border border-cyan-400/50 text-[11px] text-cyan-200 shadow-inner shadow-xl pointer-events-none animate-pulse">
                 <p className="font-bold flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 animate-spin text-cyan-300" />
                   <span>Flowy lagi mikir...</span>
@@ -703,7 +703,7 @@ export const FloatingFlowyWidget = memo(function FloatingFlowyWidget({
             ) : (
               showBubbleHint &&
               !isOpen && (
-                <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-48 px-3 py-2 rounded-2xl bg-slate-900/95 border border-purple-500/40 text-[11px] text-slate-100 shadow-xl pointer-events-none animate-fade-in">
+                <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-48 px-3 py-2 rounded-2xl bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/95 border border-white/15 text-[11px] text-slate-100 shadow-inner shadow-xl pointer-events-none animate-fade-in">
                   <p className="font-bold text-cyan-300">Hai! Gw Flowy ✨</p>
                   <p className="text-[10px] text-slate-300 leading-snug mt-0.5">
                     Klik buat ngobrol atau tahan & geser gw ke mana aja!
@@ -726,14 +726,14 @@ export const FloatingFlowyWidget = memo(function FloatingFlowyWidget({
               <X className="w-3 h-3" />
             </button>
 
-            <div onClick={handleOrbClick} className="relative">
+            <div onClick={handleOrbClick} className="relative cursor-pointer">
               <FlowOrbAvatar
                 size="lg"
                 isOnline={isOnline}
                 isLoading={isLoading}
                 isDragging={isDragging}
               />
-              <div className="mt-1 px-2 py-0.5 rounded-full bg-slate-950/95 border border-purple-500/40 text-[10px] font-extrabold text-center text-cyan-200 shadow-md flex items-center justify-center gap-1">
+              <div className="mt-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-slate-900/95 via-indigo-950/95 to-purple-950/95 border border-white/15 text-[10px] font-extrabold text-center text-cyan-200 shadow-inner shadow-md flex items-center justify-center gap-1">
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
                     isLoading

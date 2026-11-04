@@ -45,7 +45,7 @@ export function MobileBottomNav({
         hidden ? 'translate-y-24 opacity-0' : 'translate-y-0 opacity-100'
       }`}
     >
-      <div className="max-w-md mx-auto pointer-events-auto bg-slate-950/95 border border-white/15 rounded-3xl p-1.5 shadow-2xl shadow-black/60 flex items-center justify-around">
+      <div className="max-w-md mx-auto pointer-events-auto bg-gradient-to-r from-slate-900/95 via-slate-950/95 to-indigo-950/95 border border-white/15 rounded-3xl p-1.5 shadow-inner shadow-2xl shadow-black/70 flex items-center justify-around">
         {navItems.map(item => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
@@ -57,14 +57,14 @@ export function MobileBottomNav({
               className={`
                 relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-2xl transition-all
                 ${isActive 
-                  ? 'text-white bg-indigo-600/30 border border-indigo-500/40 shadow-md' 
+                  ? 'text-white bg-gradient-to-br from-indigo-600/35 to-purple-600/25 border border-indigo-400/45 shadow-inner shadow-md' 
                   : 'text-slate-400 hover:text-white'}
               `}
             >
               <div className="relative">
-                <Icon className={`w-5 h-5 ${isActive ? 'text-indigo-400' : ''}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-indigo-300' : ''}`} />
                 {item.badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2 px-1.5 py-0.2 rounded-full bg-indigo-500 text-white text-[9px] font-bold">
+                  <span className="absolute -top-1.5 -right-2 px-1.5 py-0.2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-[9px] font-bold">
                     {item.badge}
                   </span>
                 )}

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   CheckSquare,
-  Clock,
-  Sun,
   Wallet,
   Sparkles,
   Quote,
@@ -16,6 +14,7 @@ import { useJakartaTime } from '../../hooks/useJakartaTime';
 import { playSound } from '../../utils/audio';
 import { INITIAL_WORKOUT_SCHEDULE } from '../../constants/defaultData';
 import { AiAssistantCard } from '../AI/AiAssistantCard';
+import { LiveDigitalClock } from '../UI/LiveDigitalClock';
 
 function formatRupiah(amount) {
   return new Intl.NumberFormat('id-ID', {
@@ -82,19 +81,19 @@ export function DashboardView({
   return (
     <div className="space-y-6">
       {/* 🌟 HERO BANNER WITH REAL-TIME JAKARTA CLOCK & GREETING */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-96 h-96 bg-gradient-to-bl from-indigo-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="glass-panel bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner p-6 sm:p-8 rounded-3xl relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-80 h-80 bg-gradient-to-bl from-indigo-500/20 via-purple-500/15 to-transparent rounded-full pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/25 via-purple-500/25 to-cyan-500/20 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-inner">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
               <span>Real-Time Productivity Hub</span>
             </div>
 
             <h2 className="text-2xl sm:text-4xl font-black text-white font-display tracking-tight">
               {jakartaTime.greetingIcon} {jakartaTime.greeting},{' '}
-              <span className="bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300 bg-clip-text text-transparent">
                 Semangat Berkarya!
               </span>
             </h2>
@@ -104,19 +103,19 @@ export function DashboardView({
 
             {/* Daily Quote Card */}
             {currentQuote && (
-              <div className="mt-4 p-3.5 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3 max-w-xl">
+              <div className="mt-4 p-3.5 rounded-2xl bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner flex items-start gap-3 max-w-xl">
                 <Quote className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-slate-200 italic leading-relaxed">
+                  <p className="text-xs text-slate-100 italic leading-relaxed">
                     "{currentQuote.quote}"
                   </p>
-                  <div className="text-[10px] text-slate-400 font-semibold mt-1">
+                  <div className="text-[10px] text-indigo-300 font-semibold mt-1">
                     — {currentQuote.author}
                   </div>
                 </div>
                 <button
                   onClick={onRefreshQuote}
-                  className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white transition-colors"
                   title="Ganti kutipan acak"
                 >
                   <RefreshCw className="w-3 h-3 hover:rotate-180 transition-transform" />
@@ -125,19 +124,8 @@ export function DashboardView({
             )}
           </div>
 
-          {/* Big Live Digital Clock Badge */}
-          <div className="bg-gradient-to-br from-slate-900/90 to-slate-950/90 p-5 sm:p-6 rounded-3xl border border-white/15 shadow-2xl flex flex-col items-center justify-center text-center shrink-0">
-            <div className="flex items-center gap-2 text-xs font-bold text-indigo-400 mb-1 tracking-wider uppercase">
-              <Clock className="w-3.5 h-3.5 animate-pulse" />
-              <span>Waktu Indonesia Barat (WIB)</span>
-            </div>
-            <div className="font-mono text-3xl sm:text-5xl font-black tracking-wider text-white text-glow">
-              {jakartaTime.timeString}
-            </div>
-            <div className="text-xs font-semibold text-slate-300 mt-1.5">
-              {jakartaTime.dateString}
-            </div>
-          </div>
+          {/* Isolated Big Live Digital Clock Badge (Ticks every 1000ms without re-rendering Dashboard) */}
+          <LiveDigitalClock variant="hero" />
         </div>
       </div>
 
@@ -159,17 +147,17 @@ export function DashboardView({
       />
 
       {/* 🖼️ SYSTEMS DASHBOARD (Gaya Visual Estetik — Klik Langsung Menuju Menu) */}
-      <div className="glass-panel p-5 sm:p-7 rounded-3xl border border-white/10 space-y-5">
+      <div className="glass-panel bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 p-5 sm:p-7 rounded-3xl border border-white/15 shadow-inner space-y-5">
         <div className="space-y-3">
           <h3 className="text-2xl sm:text-3xl font-bold text-white font-serif tracking-tight">
             Systems
           </h3>
           <div className="flex items-center gap-2.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/15 text-xs sm:text-sm font-serif text-slate-200 shadow-inner">
-              <LayoutGrid className="w-3.5 h-3.5 text-slate-300" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-slate-800/95 via-indigo-950/90 to-slate-900/95 border border-white/15 text-xs sm:text-sm font-serif text-indigo-100 shadow-inner">
+              <LayoutGrid className="w-3.5 h-3.5 text-indigo-300" />
               <span>dashboard</span>
             </div>
-            <Flower2 className="w-4 h-4 text-slate-400" />
+            <Flower2 className="w-4 h-4 text-indigo-300" />
           </div>
         </div>
 
@@ -239,7 +227,7 @@ export function DashboardView({
                 playSound('click', soundEnabled);
                 onNavigateTab(card.id);
               }}
-              className="group relative rounded-2xl overflow-hidden bg-[#18181c]/95 border border-white/10 hover:border-indigo-400/50 shadow-xl hover:shadow-2xl transition-all duration-300 text-left flex flex-col hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+              className="group relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 hover:border-indigo-400/60 shadow-inner shadow-xl hover:shadow-2xl transition-all duration-300 text-left flex flex-col hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
             >
               {/* Area Gambar Estetik */}
               <div
@@ -255,119 +243,91 @@ export function DashboardView({
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-90 group-hover:brightness-105"
                 />
                 {/* Vignette Halus */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#18181c] via-black/20 to-transparent opacity-70 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-black/25 to-transparent opacity-75 pointer-events-none" />
 
                 {/* Badge Status Kecil di Pojok Kanan Atas Gambar */}
-                <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-slate-900/95 border border-white/15 text-[10px] font-medium text-slate-200">
+                <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-slate-900/95 via-indigo-950/95 to-slate-900/95 border border-white/20 shadow-inner text-[10px] font-semibold text-indigo-100">
                   {card.meta}
                 </span>
               </div>
 
               {/* Baris Judul di Bawah Gambar */}
-              <div className="px-4 py-3.5 bg-[#202026]/95 border-t border-white/[0.06] flex items-center justify-between gap-2">
+              <div className="px-4 py-3.5 bg-gradient-to-r from-slate-900/95 via-slate-900/95 to-indigo-950/90 border-t border-white/15 flex items-center justify-between gap-2">
                 <span className="font-serif text-[15px] sm:text-base font-semibold text-slate-100 group-hover:text-white tracking-wide truncate">
                   {card.title}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                <ArrowUpRight className="w-4 h-4 text-indigo-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
               </div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* 📊 4 RINGKASAN UTAMA: TO-DO HARIAN, RUTINITAS HARIAN, SALDO KAS BERSIH & MEMO */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* 📊 3 RINGKASAN UTAMA: TO-DO HARIAN, SALDO KAS BERSIH & MEMO */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Metric 1: To-Do Harian */}
         <div
           onClick={() => {
             playSound('click', soundEnabled);
             onNavigateTab('todo');
           }}
-          className="glass-card p-4 rounded-2xl cursor-pointer group"
+          className="glass-card bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner p-4 rounded-2xl cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400 font-medium">To-Do Harian</span>
-            <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400">
+            <span className="text-xs text-slate-300 font-semibold">To-Do Harian</span>
+            <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500/25 to-purple-500/25 border border-indigo-400/30 text-indigo-300">
               <CheckSquare className="w-4 h-4" />
             </div>
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white">
             {todoDone} / {todoTotal}{' '}
-            <span className="text-xs font-normal text-slate-400">Tugas</span>
+            <span className="text-xs font-normal text-slate-300">Tugas</span>
           </div>
-          <div className="w-full h-1.5 bg-slate-800 rounded-full mt-2.5 overflow-hidden">
+          <div className="w-full h-2 bg-slate-950/80 border border-white/10 rounded-full mt-2.5 overflow-hidden">
             <div
-              className="h-full bg-indigo-500 rounded-full transition-all duration-500"
+              className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-full transition-all duration-500"
               style={{ width: `${todoPercent}%` }}
             />
           </div>
         </div>
 
-        {/* Metric 2: Rutinitas Harian */}
-        <div
-          onClick={() => {
-            playSound('click', soundEnabled);
-            onNavigateTab('routines');
-          }}
-          className="glass-card p-4 rounded-2xl cursor-pointer group"
-        >
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400 font-medium">Rutinitas Harian</span>
-            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400">
-              <Sun className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-xs text-amber-300 font-semibold">
-              ☀️ {morningDone}/{morningTotal}
-            </span>
-            <span className="text-slate-500">•</span>
-            <span className="text-xs text-indigo-300 font-semibold">
-              🌙 {nightDone}/{nightTotal}
-            </span>
-          </div>
-          <div className="text-xs text-slate-400 mt-1">
-            🔥 {routines.streaks.morning} Hari Beruntun
-          </div>
-        </div>
-
-        {/* Metric 3: Saldo Kas Bersih */}
+        {/* Metric 2: Saldo Kas Bersih */}
         <div
           onClick={() => {
             playSound('click', soundEnabled);
             onNavigateTab('finance');
           }}
-          className="glass-card p-4 rounded-2xl cursor-pointer group"
+          className="glass-card bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner p-4 rounded-2xl cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400 font-medium">Saldo Kas Bersih</span>
-            <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400">
+            <span className="text-xs text-slate-300 font-semibold">Saldo Kas Bersih</span>
+            <div className="p-2 rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-500/25 border border-emerald-400/30 text-emerald-300">
               <Wallet className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-lg sm:text-xl font-bold font-mono text-emerald-400 truncate">
+          <div className="text-lg sm:text-xl font-bold font-mono text-emerald-300 truncate">
             {formatRupiah(netBalance)}
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">Pemasukan vs Pengeluaran</div>
+          <div className="text-[11px] text-slate-300 mt-1">Pemasukan vs Pengeluaran</div>
         </div>
 
-        {/* Metric 4: Memo & Catatan */}
+        {/* Metric 3: Memo & Catatan */}
         <div
           onClick={() => {
             playSound('click', soundEnabled);
             onNavigateTab('notes');
           }}
-          className="glass-card p-4 rounded-2xl cursor-pointer group"
+          className="glass-card bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-indigo-950/90 border border-white/15 shadow-inner p-4 rounded-2xl cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400 font-medium">Memo & Catatan</span>
-            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300">
+            <span className="text-xs text-slate-300 font-semibold">Memo & Catatan</span>
+            <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500/25 to-pink-500/25 border border-amber-400/30 text-amber-300">
               <StickyNote className="w-4 h-4" />
             </div>
           </div>
           <div className="text-lg sm:text-xl font-bold text-amber-300">
             {notes.length}{' '}
-            <span className="text-xs font-normal text-slate-400">
+            <span className="text-xs font-normal text-slate-300">
               Memo {pinnedNotesCount > 0 ? `• 📌 ${pinnedNotesCount} Disematkan` : ''}
             </span>
           </div>

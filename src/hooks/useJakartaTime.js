@@ -43,24 +43,19 @@ export function useJakartaTime() {
   return timeData;
 }
 
-export function getJakartaTimeData() {
-  const now = new Date();
-  
-  // Format to Jakarta timezone
-  const options = { timeZone: 'Asia/Jakarta', hour12: false };
-  
-  // Get time components in Jakarta
-  const formatter = new Intl.DateTimeFormat('id-ID', {
-    ...options,
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  });
+const JAKARTA_FORMATTER = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Jakarta',
+  hour12: false,
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+});
 
-  const parts = formatter.formatToParts(now);
+export function getJakartaTimeData(now = new Date()) {
+  const parts = JAKARTA_FORMATTER.formatToParts(now);
   const partMap = {};
   parts.forEach(p => {
     partMap[p.type] = p.value;

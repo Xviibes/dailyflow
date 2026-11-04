@@ -334,7 +334,7 @@ export function WellnessView({
 
       </div>
 
-      {/* Grid: Sleep & Activity */}
+      {/* Grid: Sleep & Gratitude */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* 💤 SLEEP TRACKER */}
@@ -399,137 +399,63 @@ export function WellnessView({
           />
         </div>
 
-        {/* 🏃 WORKOUT & STEPS */}
-        <div className="glass-panel p-6 rounded-3xl border border-emerald-500/20 space-y-4">
-          <div className="flex items-center justify-between gap-3 pb-3 border-b border-white/10">
+        {/* 🧘 GRATITUDE JOURNAL (3 Hal yang Disyukuri Hari Ini) */}
+        <div className="glass-panel p-6 rounded-3xl border border-purple-500/20 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-emerald-500/20 text-emerald-400">
-                <Activity className="w-6 h-6" />
+              <div className="p-3 rounded-2xl bg-purple-500/20 text-purple-400">
+                <Sparkles className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-base font-bold text-white font-display">
-                  Aktivitas Fisik & Langkah Kaki
+                  Gratitude Journal: 3 Hal yang Disyukuri Hari Ini ✨
                 </h3>
-                <div className="text-xs text-emerald-300 font-medium">
-                  {wellness.activity.steps} / {wellness.activity.stepsTarget} Langkah ({stepsPercent}%)
-                </div>
+                <p className="text-xs text-slate-400">
+                  Mengingat hal-hal baik menumbuhkan kedamaian dan rasa cukup di dalam hati.
+                </p>
               </div>
             </div>
-
-            <button
-              onClick={handleResetSteps}
-              className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors shrink-0"
-              title="Reset langkah hari ini"
-            >
-              <RotateCcw className="w-4 h-4" />
-            </button>
           </div>
 
-          <div className="space-y-1.5">
-            <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+          <form onSubmit={handleAddGratitude} className="flex gap-2">
+            <input
+              type="text"
+              required
+              placeholder="Tuliskan hal kecil atau besar yang membuatmu bersyukur hari ini..."
+              value={gratitudeInput}
+              onChange={e => setGratitudeInput(e.target.value)}
+              className="flex-1 px-4 py-2.5 rounded-xl glass-input text-xs sm:text-sm"
+            />
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shrink-0 flex items-center gap-1.5"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Tambah</span>
+            </button>
+          </form>
+
+          <div className="space-y-2">
+            {wellness.gratitude.map((item, idx) => (
               <div
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
-                style={{ width: `${stepsPercent}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              onClick={() => handleAddSteps(500)}
-              className="py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold"
-            >
-              +500 Langkah
-            </button>
-            <button
-              onClick={() => handleAddSteps(1000)}
-              className="py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold"
-            >
-              +1,000 Langkah
-            </button>
-            <button
-              onClick={() => handleAddSteps(2500)}
-              className="py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold"
-            >
-              +2,500 Langkah
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 text-xs">
-            <div className="p-3 rounded-2xl bg-slate-900/60 border border-white/5">
-              <span className="text-slate-400 block text-[10px]">Durasi Workout</span>
-              <span className="text-base font-bold text-white">{wellness.activity.workoutMinutes} Menit</span>
-              <span className="text-[10px] text-slate-400 block truncate">{wellness.activity.workoutType}</span>
-            </div>
-            <div className="p-3 rounded-2xl bg-slate-900/60 border border-white/5">
-              <span className="text-slate-400 block text-[10px]">Kalori Terbakar</span>
-              <span className="text-base font-bold text-orange-400 flex items-center gap-1">
-                <Flame className="w-4 h-4 fill-orange-400" />
-                {wellness.activity.caloriesBurned} kkal
-              </span>
-              <span className="text-[10px] text-slate-400 block">Estimasi aktif</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* 🧘 GRATITUDE JOURNAL (3 Hal yang Disyukuri Hari Ini) */}
-      <div className="glass-panel p-6 rounded-3xl border border-purple-500/20 space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-purple-500/20 text-purple-400">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-white font-display">
-                Gratitude Journal: 3 Hal yang Disyukuri Hari Ini ✨
-              </h3>
-              <p className="text-xs text-slate-400">
-                Mengingat hal-hal baik menumbuhkan kedamaian dan rasa cukup di dalam hati.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <form onSubmit={handleAddGratitude} className="flex gap-2">
-          <input
-            type="text"
-            required
-            placeholder="Tuliskan hal kecil atau besar yang membuatmu bersyukur hari ini..."
-            value={gratitudeInput}
-            onChange={e => setGratitudeInput(e.target.value)}
-            className="flex-1 px-4 py-2.5 rounded-xl glass-input text-xs sm:text-sm"
-          />
-          <button
-            type="submit"
-            className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shrink-0 flex items-center gap-1.5"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Tambah</span>
-          </button>
-        </form>
-
-        <div className="space-y-2">
-          {wellness.gratitude.map((item, idx) => (
-            <div
-              key={item.id}
-              className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between gap-3 text-xs"
-            >
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-[10px] shrink-0">
-                  {idx + 1}
-                </span>
-                <span className="text-slate-200 font-medium">{item.text}</span>
-              </div>
-              <button
-                onClick={() => handleDeleteGratitude(item.id)}
-                className="text-slate-400 hover:text-rose-400 p-1 shrink-0"
+                key={item.id}
+                className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between gap-3 text-xs"
               >
-                <Trash2 className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-[10px] shrink-0">
+                    {idx + 1}
+                  </span>
+                  <span className="text-slate-200 font-medium">{item.text}</span>
+                </div>
+                <button
+                  onClick={() => handleDeleteGratitude(item.id)}
+                  className="text-slate-400 hover:text-rose-400 p-1 shrink-0"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
